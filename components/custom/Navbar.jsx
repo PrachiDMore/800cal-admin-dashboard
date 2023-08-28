@@ -9,10 +9,10 @@ const Navbar = () => {
         <img className='h-20 w-20' src="/assets/logo.png" alt="" />
       </div>
       <div className='text-white grid grid-cols-1 gap-2'>
-        <NavItem link={{
+        {/* <NavItem link={{
           url: "/",
           title: "Home"
-        }}/>
+        }}/> */}
         <NavItem link={{
           url: "/restaurant",
           title: "Restaurant"

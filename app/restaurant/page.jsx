@@ -16,7 +16,7 @@ const Restaurant = () => {
 				setRestaurants(res.data.restaurants)
 			})
 			.catch((err) => {
-				console.log(err)
+				alert(err.message)
 			})
 	}, []);
 	return (

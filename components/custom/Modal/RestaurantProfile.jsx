@@ -6,17 +6,18 @@ import axios from 'axios'
 const RestoProfile = ({ modal, setModal }) => {
 	const approve = () => {
 		try {
-			axios('http://localhost:5000/restaurant/enable', {
+			axios('https://800cal-backend.vercel.app/restaurant/enable', {
 				method: "PATCH",
 				headers: {
-					Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGVjZTBmMGMyNzQwYzViNTgyZDI3M2MiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTMyNDU2OTV9.Ijub0f5Kl8EMELaQnf5AkZuf6tX_frsxtV3nEcPGPEY`
+					Authorization: `Bearer ${localStorage.getItem('token')}`
 				},
 				data: {
 					_id: modal?.data?._id
 				}
 			})
 				.then((res) => {
-					console.log(res.data)
+					alert(res.data.message)
+					window.location.reload()
 				})
 		} catch (error) {
 			alert(error.message)
@@ -24,17 +25,18 @@ const RestoProfile = ({ modal, setModal }) => {
 	}
 	const suspend = () => {
 		try {
-			axios('http://localhost:5000/restaurant/suspend', {
+			axios('https://800cal-backend.vercel.app/restaurant/suspend', {
 				method: "PATCH",
 				headers: {
-					Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGVjZTBmMGMyNzQwYzViNTgyZDI3M2MiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTMyNDU2OTV9.Ijub0f5Kl8EMELaQnf5AkZuf6tX_frsxtV3nEcPGPEY`
+					Authorization: `Bearer ${localStorage.getItem('token')}`
 				},
 				data: {
 					_id: modal?.data?._id
 				}
 			})
 				.then((res) => {
-					console.log(res.data)
+					alert(res.data.message)
+					window.location.reload()
 				})
 		} catch (error) {
 			alert(error.message)
