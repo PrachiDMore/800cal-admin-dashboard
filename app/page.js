@@ -16,7 +16,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-
 export default function Home() {
   const table = useReactTable({
     data,

@@ -14,30 +14,13 @@ const Navbar = () => {
           title: "Home"
         }}/>
         <NavItem link={{
-          url: "/list-foods",
-          title: "Add Food"
+          url: "/restaurant",
+          title: "Restaurant"
         }}/>
-        <NavItem title={"Orders"} items={[
-          {
-            url: "/all-orders",
-            title: "All Orders"
-          },
-          {
-            url: "/",
-            title: "Confirmed Orders"
-          },
-          {
-            url: "/",
-            title: "Complete Orders"
-          },
-          {
-            url: "/",
-            title: "Cancelled Orders"
-          }
-        ]}/>
-        <p className='bg-darkGray py-2 px-3 rounded-lg'>Accounts</p>
-        <p className='bg-darkGray py-2 px-3 rounded-lg'>Reviews</p>
-        <p className='bg-darkGray py-2 px-3 rounded-lg'>Programs</p>
+        <NavItem link={{
+          url: "/customer",
+          title: "Customer"
+        }}/>
       </div>
     </div>
     </>

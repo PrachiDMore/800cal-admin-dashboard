@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { FiChevronRight } from 'react-icons/fi';
@@ -17,7 +18,7 @@ const NavItem = ({ link, items, title }) => {
             <div className={show ? 'bg-darkGray rounded-lg flex flex-col mt-2' : "hidden"}>
               {
                 items?.map((item) => {
-                  return <Link to={item?.url} className='flex gap-2 items-center select-none text-sm py-2 px-3 rounded-lg'>
+                  return <Link href={item?.url} className='flex gap-2 items-center select-none text-sm py-2 px-3 rounded-lg'>
                     <FiChevronRight className='text-green' />
                     <div>
                       {item?.title}

@@ -1,10 +1,13 @@
 import React from 'react'
 import Navbar from './Navbar'
+import { Lexend } from 'next/font/google'
+
+const lexend = Lexend({ subsets: ['latin'] })
 
 const Layout = ({ children, navbar = true }) => {
   return (
     <>
-      <div className='w-screen max-w-screen min-h-screen bg-accent flex text-white'>
+      <div className={'w-screen max-w-screen min-h-screen bg-accent flex text-white ' + lexend.className}>
         {navbar && <Navbar />}
         {children}
         {/* <div className='w-4/5  Lexend'>

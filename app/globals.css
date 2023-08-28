@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css?family=Nunito:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic');
+
+::-webkit-scrollbar{
+  width: 0;
+}
 
 @layer base {
   :root {
@@ -48,4 +53,8 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9;
   }
+}
+
+.Lexend{
+  font-family: 'Lexend';
 }
