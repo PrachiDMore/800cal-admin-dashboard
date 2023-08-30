@@ -34,7 +34,7 @@ const Restaurant = () => {
 							<input className='w-full outline-none bg-darkGray rounded-lg px-4 py-2' type="text" placeholder='Search...' />
 						</div>
 
-						<div className="w-full text-white pt-3 overflow-hidden border-mediumGray rounded-lg">
+						<div className="w-full text-white mt-3 overflow-hidden rounded-lg">
 							<table className="w-full text-left bg-darkGray ">
 								<thead className='overflow-hidden '>
 									<tr className='bg-mediumGray rounded-t-lg'>
