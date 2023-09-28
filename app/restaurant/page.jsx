@@ -1,5 +1,6 @@
 "use client"
 
+import Button from '@/components/custom/Button';
 import Layout from '@/components/custom/Layout'
 import RestoProfile from '@/components/custom/Modal/RestaurantProfile';
 import axios from 'axios';
@@ -29,12 +30,17 @@ const Restaurant = () => {
 						{/* <img onClick={() => { setShowResto(true) }} className='border-green border-2 rounded-3xl p-1 h-12 w-12' src="/assets/resto.png" alt="" /> */}
 					</div>
 
-					<div className='w-full p-5'>
+					<div className='w-full grid gap-3 p-5'>
 						<div className='w-full'>
 							<input className='w-full outline-none bg-darkGray rounded-lg px-4 py-2' type="text" placeholder='Search...' />
 						</div>
 
-						<div className="w-full text-white mt-3 overflow-hidden rounded-lg">
+						<div className='flex w-full gap-3'>
+              <Button text={"Excel"}/>
+              <Button text={"Print"}/>
+            </div>
+
+						<div className="w-full text-white overflow-hidden rounded-lg">
 							<table className="w-full text-left bg-darkGray ">
 								<thead className='overflow-hidden '>
 									<tr className='bg-mediumGray rounded-t-lg'>

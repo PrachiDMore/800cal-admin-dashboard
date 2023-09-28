@@ -21,6 +21,14 @@ const Navbar = () => {
           url: "/customer",
           title: "Customer"
         }}/>
+        <NavItem link={{
+          url: "/rider",
+          title: "Rider"
+        }}/>
+        <NavItem link={{
+          url: "/rider/restaurant",
+          title: "Restaurant Rider"
+        }}/>
       </div>
     </div>
     </>
