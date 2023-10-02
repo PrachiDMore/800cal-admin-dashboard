@@ -23,7 +23,7 @@ const ViewRider = ({ viewRider, setViewRider, isRestaurant }) => {
 
             <div className="p-6 space-y-4">
               <div className='grid grid-cols-2 gap-x-4'>
-                <Input readOnly={true} value={"Jhon Doe"} label={"Profile Photo"} type={"File"} placeholder={"Enter your Name"} />
+                <Input readOnly={true} label={"Profile Photo"} type={"File"} placeholder={"Enter your Name"} />
                 <Input readOnly={true} value={"Jhon Doe"} label={"Name"} type={"text"} placeholder={"Enter your Name"} />
               </div>
               <div className='grid grid-cols-2 gap-x-4'>

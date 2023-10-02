@@ -6,11 +6,15 @@ import RestoProfile from '@/components/custom/Modal/RestaurantProfile';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { AiFillEye } from 'react-icons/ai';
+import { MdOutlineRateReview } from 'react-icons/md';
+import { useRouter } from 'next/navigation';
 
 const Restaurant = () => {
 	const [restaurants, setRestaurants] = useState([]);
 	const reset = { show: false, update: false, data: undefined }
 	const [modal, setModal] = useState(reset)
+	const router = useRouter()
+
 	useEffect(() => {
 		axios('https://800cal-backend.vercel.app/restaurant/all')
 			.then((res) => {
@@ -20,6 +24,7 @@ const Restaurant = () => {
 				alert(err.message)
 			})
 	}, []);
+
 	return (
 		<>
 			<Layout>
@@ -36,9 +41,9 @@ const Restaurant = () => {
 						</div>
 
 						<div className='flex w-full gap-3'>
-              <Button text={"Excel"}/>
-              <Button text={"Print"}/>
-            </div>
+							<Button text={"Excel"} />
+							<Button text={"Print"} />
+						</div>
 
 						<div className="w-full text-white overflow-hidden rounded-lg">
 							<table className="w-full text-left bg-darkGray ">
@@ -66,9 +71,7 @@ const Restaurant = () => {
 									{
 										restaurants?.map((restaurant, index) => {
 											return <tr className="border-b border-mediumGray">
-												<th className="px-6 py-4 ">
-													{index + 1}
-												</th>
+												<th className="px-6 py-4 ">{index + 1}</th>
 												<td className="px-6 py-4">
 													<div className='flex gap-3 items-center'>
 														<img className='h-10 w-10 object-contain' src={restaurant?.logo} alt="" />
@@ -78,17 +81,12 @@ const Restaurant = () => {
 														</div>
 													</div>
 												</td>
-												<td className="px-6 py-4">
-													{restaurant?.email}
-												</td>
-												<td className="px-6 py-4">
-													{restaurant?.username}
-												</td>
-												<td onClick={() => {
-													setModal({ show: true, update: true, data: restaurant })
-												}} className="cursor-pointer px-6 py-4">
-													<span className='h-10 w-10 bg-blue-500'><AiFillEye /></span>
-												</td>
+												<td className="px-6 py-4">{restaurant?.email}</td>
+												<td className="px-6 py-4">{restaurant?.username}</td>
+												<td className="px-6 py-4 flex items-center">
+													<span onClick={() => { setModal({ show: true, update: true, data: restaurant }) }} className='cursor-pointer h-10 w-10'><AiFillEye />
+													</span><span onClick={() => router.push('/restaurant/review')} className='cursor-pointer h-10 w-10 text-lg'><MdOutlineRateReview /></span>
+													</td>
 											</tr>
 										})
 									}
