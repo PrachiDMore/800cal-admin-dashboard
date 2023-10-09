@@ -1,5 +1,6 @@
 import React from 'react'
 import NavItem from './NavItem'
+import {BsBox} from 'react-icons'
 
 const Navbar = () => {
   return (
@@ -29,6 +30,28 @@ const Navbar = () => {
           url: "/rider/restaurant",
           title: "Restaurant Rider"
         }}/>
+        <NavItem title={"Orders"}  order={true} items={[
+            {
+              url: "/all-orders",
+              title: "All Orders"
+            },
+            {
+              url: "/new-orders",
+              title: "New Orders"
+            },
+            {
+              url: "/confirmed-orders",
+              title: "Confirmed Orders"
+            },
+            {
+              url: "/complete-orders",
+              title: "Complete Orders"
+            },
+            {
+              url: "/cancelled-orders",
+              title: "Cancelled Orders"
+            }
+          ]} />
       </div>
     </div>
     </>
