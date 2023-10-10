@@ -74,7 +74,7 @@ const page = () => {
                       1
                     </td>
                     <td className="px-6 py-4">
-                      Chilis
+                    <div className='flex items-center gap-3'><img  className='border-green border-2 rounded-3xl p-1 h-8 w-8' src="/assets/resto.png" alt="" /> Chilis</div>
                     </td>
                   </tr>
                   <tr className="">
@@ -100,7 +100,7 @@ const page = () => {
                       1
                     </td>
                     <td className="px-6 py-4">
-                      Chilis
+                    <div className='flex items-center gap-3'><img  className='border-green border-2 rounded-3xl p-1 h-8 w-8' src="/assets/resto.png" alt="" /> Chilis</div>
                     </td>
                   </tr>
 
