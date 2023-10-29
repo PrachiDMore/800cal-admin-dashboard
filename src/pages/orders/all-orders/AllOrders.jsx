@@ -56,9 +56,9 @@ const AllOrders = () => {
                   {
                     orders?.map((order, index) => {
                       console.log(order)
-                      return <tr key={order._id} className="border-b border-mediumGray cursor-pointer">
+                      return <tr key={order._id + index} className="border-b border-mediumGray cursor-pointer">
                         <th className="px-6 py-4 ">
-                          #{index + 1}
+                          #{order._id.slice(18)}
                         </th>
                         <td className="px-6 py-4">
                           <div className='flex gap-1 items-center'>
