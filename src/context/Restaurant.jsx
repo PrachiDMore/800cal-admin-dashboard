@@ -7,7 +7,7 @@ export const RestaurantContextProvider = ({ children }) => {
 	const [restaurants, setRestaurants] = useState([]);
 	
 	useEffect(() => {
-		axios('https://800cal-backend.vercel.app/restaurant/all')
+		axios(`${process.env.REACT_APP_BASE_URL}restaurant/all`)
 			.then((res) => {
 				setRestaurants(res.data.restaurants)
 			})

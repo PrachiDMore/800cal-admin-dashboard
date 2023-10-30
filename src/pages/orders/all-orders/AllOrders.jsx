@@ -41,53 +41,48 @@ const AllOrders = () => {
                       Date
                     </th>
                     <th className="px-6 py-3">
-                      Duration
+                      Description
                     </th>
                     <th className="px-6 py-3">
-                      Fridays Included
+                      Restaurant
                     </th>
                     <th className="px-6 py-3">
-                      Restaurant Category
+                      Status
                     </th>
                   </tr>
                 </thead>
 
                 <tbody className='text-sm'>
-                  {
-                    orders?.map((order, index) => {
-                      console.log(order)
-                      return <tr key={order._id + index} className="border-b border-mediumGray cursor-pointer">
-                        <th className="px-6 py-4 ">
-                          #{order._id.slice(18)}
-                        </th>
-                        <td className="px-6 py-4">
-                          <div className='flex gap-1 items-center'>
-                            {/* <img className='h-8 w-8 mr-1' src={order.customer?.image} alt="" /> */}
-                            <div>
-                              {/* <p>{order.customer.firstname} {order.customer.lastname}</p>
-                              <p className='text-xs text-mediumGray'>{order.customer?.address || "N/A"}</p> */}
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4">
-                          {/* {moment(order.timestamp).format("Do MMM, YYYY, h:mm A")} */}
-                        </td>
-                        <td className="px-6 py-4 flex flex-col">
-                          {/* <p>{moment(order.startDate).format("Do MMM, YYYY")} - {moment(order.endDate).format("Do MMM, YYYY")}</p>
-                          <p className='text-xs text-mediumGray'>{order.duration} Days</p> */}
-                        </td>
-                        <td className="px-6 py-4">
-                          {/* {order.includeFridays ? "Included" : "Excluded"} */}
-                        </td>
-                        <td className="px-6 py-4">
-                          <div className='flex items-center gap-3'>
-                            {/* <img className='border-green border-2 rounded-3xl p-1 h-8 w-8' src="/assets/resto.png" alt="" /> Chilis</div> */}
-                            {/* {order.restaurantCategory.title} */}
-                          </div>
-                        </td>
-                      </tr>
-                    })
-                  }
+                {
+											orders?.map((order) => {
+												return <tr key={order?._id} className="border-b border-mediumGray">
+													<th className="px-6 py-4 ">
+														#{order?._id?.slice(18)}
+													</th>
+													<td className="px-6 py-4">
+														<div className='flex gap-1 items-center'>
+															<img className='h-8 w-8 rounded-lg' src={order?.customer?.image} alt="" />
+															<div>
+																<p>{order?.customer?.firstname} {order?.customer?.lastname}</p>
+																<p className='text-xs text-mediumGray'>{order?.customer?.address}</p>
+															</div>
+														</div>
+													</td>
+													<td className="px-6 py-4">
+														{moment(order?.date).format("Do MMM, YYYY - HH:mm")}
+													</td>
+													<td className="px-6 py-4">
+														{order?.program?.name} ({order?.meals?.name})
+													</td>
+													<td className="px-6 py-4">
+														{order?.restaurant?.title}
+													</td>
+													<td className="px-6 py-4">
+														Being delivered
+													</td>
+												</tr>
+											})
+										}
                 </tbody>
               </table>
             </div>
