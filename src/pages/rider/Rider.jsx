@@ -3,9 +3,13 @@ import Layout from '../../components/Layout'
 import { AiFillEye } from 'react-icons/ai';
 import Button from '../../components/Button';
 import ViewRider from '../../components/modal/ViewRider';
+import { UseRidersContext } from '../../context/Riders';
+import { useNavigate } from 'react-router-dom';
 
 const Rider = () => {
   const [viewRider, setViewRider] = useState(false)
+  const { riders } = UseRidersContext();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -28,8 +32,8 @@ const Rider = () => {
             </div>
 
             <div className="w-full text-white overflow-scroll rounded-lg max-h-[72vh]">
-							<table className="w-full text-left bg-darkGray h-full max-h-full">
-								<thead className='sticky top-0'>
+              <table className="w-full text-left bg-darkGray h-full max-h-full">
+                <thead className='sticky top-0'>
                   <tr className='bg-mediumGray rounded-t-lg'>
                     <th className="px-6 py-3">#</th>
                     <th className="px-6 py-3">Name</th>
@@ -40,26 +44,31 @@ const Rider = () => {
                   </tr>
                 </thead>
                 <tbody className='text-sm'>
-                  <tr className="border-b border-mediumGray">
-                    <th className="px-6 py-4 ">1</th>
-                    <td className="px-6 py-4">
-                      <div className='flex gap-3 items-center'>
-                        <img className='h-10 w-10' src="/assets/profile.png" alt="" />
-                        <p>Jhon Doe</p>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">jhondoe@gmail.com</td>
-                    <td className="px-6 py-4">jhondoe</td>
-                    <td className="px-6 py-4">1234567890</td>
-                    {/* <td className="px-6 py-4">
-												<span className='h-10 w-10 bg-blue-500' onClick={() => {
-													alert("Working!")
-												}}><AiFillEye/></span>
-											</td> */}
-                    <td className="cursor-pointer px-6 py-4">
-                      <span onClick={() => { setViewRider(true) }} className='h-10 w-10 bg-blue-500'><AiFillEye /></span>
-                    </td>
-                  </tr>
+                  {
+                    riders?.map((rider, index) => {
+                      return <tr onClick={() => { navigate(`/rider/${rider._id}`) }} className="border-b border-mediumGray">
+                        <th className="px-6 py-4 ">#{index + 1}</th>
+                        <td className="px-6 py-4">
+                          <div className='flex gap-3 items-center'>
+                            <img className='h-10 w-10' src={rider?.image} alt="" />
+                            <p>{rider?.firstname} {rider?.lastname}</p>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">{rider?.email}</td>
+                        <td className="px-6 py-4">{rider?.username}</td>
+                        <td className="px-6 py-4">{rider?.phonenumber}</td>
+                        {/* <td className="px-6 py-4">
+                          <span className='h-10 w-10 bg-blue-500' onClick={() => {
+                            alert("Working!")
+                          }}><AiFillEye/></span>
+                        </td> */}
+                        <td className="cursor-pointer px-6 py-4">
+                          <span onClick={() => { setViewRider(true) }} className='h-10 w-10 bg-blue-500'><AiFillEye /></span>
+                        </td>
+                      </tr>
+                    })
+                  }
+
                   {/* {
 										customers?.map((customer, index) => {
 											return <tr className="border-b border-mediumGray">

@@ -5,6 +5,7 @@ import UploadComponent from '../../components/UploadComponent';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
+import axios from 'axios';
 
 const ProgramForm = () => {
 	const { _id } = useParams();
@@ -15,7 +16,8 @@ const ProgramForm = () => {
 		tag: "",
 		kcal: "",
 		tag: "",
-		popular: false
+		popular: false,
+		disabled: false
 	}
 	const [formState, setFormState] = useState(initialFormState);
 	const handleChange = (e) => {
@@ -23,6 +25,27 @@ const ProgramForm = () => {
 			...formState,
 			[e.target.id]: e.target.value
 		})
+	}
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		if (image) {
+			axios(`${process.env.REACT_APP_BASE_URL}program/create`, {
+				method: "POST",
+				data: { ...formState, logo: image },
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("token")}`
+				}
+			})
+				.then((res) => {
+					alert(res.data.message)
+					setFormState(initialFormState)
+				})
+				.catch((err) => {
+					alert(err.message)
+				})
+		} else {
+			alert("Please upload image!")
+		}
 	}
 	return (
 		<>
@@ -32,7 +55,7 @@ const ProgramForm = () => {
 					<div className='h-[10vh] w-full p-4 flex items-center justify-between border-b border-textGray text-2xl font-semibold'>
 						{!_id ? "Add Program" : "Edit Program"}
 					</div>
-					<form className='p-10 flex flex-col gap-y-3 max-h-[90vh] overflow-scroll'>
+					<form onSubmit={handleSubmit} className='p-10 flex flex-col gap-y-3 max-h-[90vh] overflow-scroll'>
 						<UploadComponent setImage={setImage} image={image} />
 						<Input placeholder={"Enter the program name"} label={"Name"} id={"name"} type={"text"} value={formState.name} onChange={handleChange} />
 						<Input placeholder={"Enter the program tag"} label={"Tag"} id={"tag"} type={"text"} value={formState.tag} onChange={handleChange} />
@@ -45,6 +68,13 @@ const ProgramForm = () => {
 							label: "No",
 							value: false
 						}]} label={"Popular"} id={"popular"} value={formState.popular} onChange={handleChange} />
+						<Select options={[{
+							label: "Yes",
+							value: true
+						}, {
+							label: "No",
+							value: false
+						}]} label={"Disable"} id={"disabled"} value={formState.disabled} onChange={handleChange} />
 						<Button type={"submit"} text={"Submit"} />
 					</form>
 				</div>

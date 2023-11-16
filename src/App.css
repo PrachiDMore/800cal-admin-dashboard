@@ -11,3 +11,42 @@ body {
 .Lexend {
   font-family: 'Lexend';
 }
+
+.editor {
+  text-align: center;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+
+.hiddenToolbar .ql-toolbar{
+  display: none !important;
+}
+
+.ql-container.ql-snow{
+  border: none !important;
+}
+
+.ql-toolbar{
+  background: rgb(37, 37, 37);
+  border: 1px solid #ccc !important;
+  border-top-left-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+  font-family: "Lexend";
+  color: white !important;
+}
+
+.ql-editor{
+  border: 1px solid #ccc !important;
+  border-radius: 8px !important;
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-top: none !important;
+  background: rgb(37, 37, 37);
+  font-family: "Lexend";
+}
+
+.ql-snow.ql-toolbar button:hover, .ql-snow .ql-toolbar button:hover, .ql-snow.ql-toolbar button:focus, .ql-snow .ql-toolbar button:focus, .ql-snow.ql-toolbar button.ql-active, .ql-snow .ql-toolbar button.ql-active, .ql-snow.ql-toolbar .ql-picker-label:hover, .ql-snow .ql-toolbar .ql-picker-label:hover, .ql-snow.ql-toolbar .ql-picker-label.ql-active, .ql-snow .ql-toolbar .ql-picker-label.ql-active, .ql-snow.ql-toolbar .ql-picker-item:hover, .ql-snow .ql-toolbar .ql-picker-item:hover, .ql-snow.ql-toolbar .ql-picker-item.ql-selected, .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+  color: white !important;
+}

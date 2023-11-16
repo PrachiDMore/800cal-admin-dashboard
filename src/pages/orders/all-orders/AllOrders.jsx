@@ -4,6 +4,7 @@ import axios from 'axios';
 import moment from 'moment/moment';
 import React, { useEffect, useState } from 'react'
 import { UseOrderContext } from '../../../context/Orders';
+import { Link } from 'react-router-dom';
 
 const AllOrders = () => {
   const { orders } = UseOrderContext();
@@ -14,7 +15,7 @@ const AllOrders = () => {
         <div className='w-4/5  Lexend'>
           {/* topbar */}
           <div className='w-full p-4 flex items-center justify-between border-b border-textGray text-2xl font-semibold'>
-            All Subscriptions
+            All Orders
           </div>
 
           <div className='w-full p-5 grid gap-4'>
@@ -55,10 +56,10 @@ const AllOrders = () => {
                 <tbody className='text-sm'>
                 {
 											orders?.map((order) => {
-												return <tr key={order?._id} className="border-b border-mediumGray">
-													<th className="px-6 py-4 ">
+												return <tr key={order?._id} className="border-b border-mediumGray ">
+													<Link to={`/order/${order?._id}`} className="flex items-center px-6 py-4 ">
 														#{order?._id?.slice(18)}
-													</th>
+													</Link>
 													<td className="px-6 py-4">
 														<div className='flex gap-1 items-center'>
 															<img className='h-8 w-8 rounded-lg' src={order?.customer?.image} alt="" />

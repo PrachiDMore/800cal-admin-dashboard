@@ -1,12 +1,14 @@
 import React from 'react'
 import NavItem from './NavItem'
 import { UseSubscriptionContext } from '../context/Subscriptions'
+import { UseOrderContext } from '../context/Orders'
 
 const Navbar = () => {
   const { subscriptions } = UseSubscriptionContext()
+  const { orders } = UseOrderContext()
   return (
     <>
-      <div className='w-1/5 p-5 Lexend border-r border-textGray'>
+      <div className='w-1/5 p-5 Lexend border-r border-textGray max-h-screen overflow-scroll'>
         <div>
           <img className='h-20 w-20' src="/assets/logo.png" alt="" />
         </div>
@@ -46,7 +48,7 @@ const Navbar = () => {
             {
               url: "/orders/all",
               title: "All Orders",
-              number: 0
+              number: orders?.length
             },
             {
               url: "/subscription/new",
