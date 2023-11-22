@@ -1,22 +1,26 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react"
+import { UseGlobalContext } from "./Global";
 
 const RidersContext = createContext()
 
 export const RidersContextProvider = ({ children }) => {
+	const { token } = UseGlobalContext()
 	const [riders, setRiders] = useState([]);
 	useEffect(() => {
-		try {
-			axios(`${process.env.REACT_APP_BASE_URL}rider/all`, {
-				method: "GET",
-			})
-				.then((res) => {
-					setRiders(res.data.riders)
+		if (token) {
+			try {
+				axios(`${process.env.REACT_APP_BASE_URL}rider/all`, {
+					method: "GET",
 				})
-		} catch (error) {
+					.then((res) => {
+						setRiders(res.data.riders)
+					})
+			} catch (error) {
 
+			}
 		}
-	}, []);
+	}, [token]);
 	return <RidersContext.Provider value={{ riders }}>
 		{children}
 	</RidersContext.Provider>

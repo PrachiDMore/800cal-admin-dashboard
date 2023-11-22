@@ -59,6 +59,7 @@ const Restaurant = () => {
 								<tbody className='text-sm'>
 									{
 										restaurants?.map((restaurant, index) => {
+											console.log(index)
 											return <tr className="border-b border-mediumGray">
 												<th className="px-6 py-4 ">{index + 1}</th>
 												<td className="px-6 py-4">

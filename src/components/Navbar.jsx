@@ -2,10 +2,14 @@ import React from 'react'
 import NavItem from './NavItem'
 import { UseSubscriptionContext } from '../context/Subscriptions'
 import { UseOrderContext } from '../context/Orders'
+import { UseProgramContext } from '../context/Program'
+import { UseMealsContext } from '../context/Meals'
 
 const Navbar = () => {
   const { subscriptions } = UseSubscriptionContext()
   const { orders } = UseOrderContext()
+  const { programs } = UseProgramContext()
+  const { meals } = UseMealsContext()
   return (
     <>
       <div className='w-1/5 p-5 Lexend border-r border-textGray max-h-screen overflow-scroll'>
@@ -75,10 +79,32 @@ const Navbar = () => {
             url: "/customer",
             title: "Customer"
           }} />
-          <NavItem link={{
-            url: "/programs",
-            title: "Programs"
-          }} />
+          <NavItem title={"Program"} items={[
+            {
+              url: "/programs",
+              title: "Programs",
+              number: programs?.length
+            },
+            {
+              url: "/program/add",
+              title: "Add Program",
+            }
+          ]} />
+          <NavItem title={"Meals"} items={[
+            {
+              url: "/meals",
+              title: "Meals",
+              number: meals?.length
+            },
+            {
+              url: "/meal/add",
+              title: "Add Meal",
+            },
+            {
+              url: "/meal/application",
+              title: "Meals Application",
+            }
+          ]} />
           <NavItem link={{
             url: "/rider",
             title: "Rider"
@@ -90,6 +116,10 @@ const Navbar = () => {
           <NavItem link={{
             url: "/reviews",
             title: "Reviews"
+          }} />
+          <NavItem link={{
+            url: "/details",
+            title: "Details"
           }} />
         </div>
       </div>

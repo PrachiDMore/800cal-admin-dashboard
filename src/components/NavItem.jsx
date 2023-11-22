@@ -21,7 +21,7 @@ const NavItem = ({ link, items, title }) => {
                     <FiChevronRight className='text-green' />
                     <div className='flex justify-between items-center w-full'>
                       <div>{item?.title}</div>
-                      {item?.number !== null && <div className={'text-xs bg-green/30 font-medium rounded-full px-2 py-1'} >{item.number}</div>}
+                      {item?.number != null && <div className={'text-xs bg-green/30 font-medium rounded-full px-2 py-1'} >{item.number}</div>}
                     </div>
                   </Link>
                 })

@@ -42,6 +42,7 @@ const Details = () => {
 				if (res.data.error) {
 					alert(res.data.message)
 				} else {
+					alert(res.data.message)
 					setFormState(res.data.details)
 					setTermsandconditions(res.data.details?.termsandconditions)
 					setHelp(res.data.details?.help)
