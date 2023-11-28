@@ -35,7 +35,6 @@ const Meals = () => {
                     <th className="px-6 py-3">Image</th>
                     <th className="px-6 py-3">Name</th>
                     <th className="px-6 py-3">No. Of Meals</th>
-                    <th className="px-6 py-3">Price</th>
                   </tr>
                 </thead>
 
@@ -49,7 +48,6 @@ const Meals = () => {
                         </td>
                         <td className="px-6 py-4">{data?.name}</td>
                         <td className="px-6 py-4">{data?.meals?.length}</td>
-                        <td className="px-6 py-4">{data?.price}</td>
                       </tr>
                     })
                   }

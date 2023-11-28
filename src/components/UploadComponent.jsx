@@ -15,7 +15,7 @@ const UploadComponent = ({ image, setImage, type = "default", children }) => {
 			showUploadMoreButton: false,
 			singleUploadAutoClose: true,
 			clientAllowedFormats: ["jpg", "webp", "png", "jpeg"],
-			sources: ["local"],
+			// sources: ["local"],
 			theme: "minimal"
 		}, (err, res) => {
 			if (res.event === "success") {

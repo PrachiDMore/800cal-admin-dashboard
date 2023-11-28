@@ -4,10 +4,35 @@ import Layout from '../../components/Layout'
 import React, { useEffect, useState } from 'react'
 import { UseMealsContext } from '../../context/Meals';
 import { UseMealApplicationContext } from '../../context/MealApplications';
+import axios from 'axios';
 
 const MealsApplication = () => {
   const { applications } = UseMealApplicationContext();
   const router = useNavigate()
+
+  const handleApprove = (data) => {
+    if (data) {
+      axios(`${process.env.REACT_APP_BASE_URL}meal-application/approve`, {
+        method: "PATCH",
+        data: { restaurant: data?.restaurant._id, meal: data?.meal._id },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      })
+        .then((res) => {
+          if (res.data.error) {
+            alert(res.data.message)
+          } else {
+            alert(res.data.message)
+          }
+        })
+        .catch((err) => {
+          alert(err.message)
+        })
+    } else {
+      alert("Something went wrong!");
+    }
+  }
   return (
     <>
       <Layout>
@@ -31,11 +56,11 @@ const MealsApplication = () => {
               <table className="w-full text-left bg-darkGray h-full max-h-full">
                 <thead className='sticky top-0'>
                   <tr className='bg-mediumGray rounded-t-lg'>
-                    <th className="px-6 py-3">Id</th>
-                    <th className="px-6 py-3">Meal</th>
-                    <th className="px-6 py-3">Program</th>
-                    <th className="px-6 py-3">Restaurant</th>
-                    <th className="px-6 py-3">Price</th>
+                    <th className="px-6 py-4">Id</th>
+                    <th className="px-6 py-4">Meal</th>
+                    <th className="px-6 py-4">Program</th>
+                    <th className="px-6 py-4">Restaurant</th>
+                    <th className="px-6 py-4">Action</th>
                   </tr>
                 </thead>
 
@@ -44,10 +69,10 @@ const MealsApplication = () => {
                     applications?.map((data, index) => {
                       return <tr key={index} className="border-b border-mediumGray">
                         <Link to={`/meal/${data._id}`} className="h-full font-bold flex items-center px-6 py-4 ">#{data._id?.slice(20)}</Link>
-                        <td className="px-6 py-4">{data?.meal.name}</td>
-                        <td className="px-6 py-4">{data?.meal.program.name}</td>
-                        <td className="px-6 py-4"><Link to={`/restaurant/${data?.restaurant._id}`}>{data?.restaurant.title}</Link></td>
-                        <td className="px-6 py-4">{data?.price}</td>
+                        <td className="px-6 py-2">{data?.meal.name}</td>
+                        <td className="px-6 py-2">{data?.meal.program.name}</td>
+                        <td className="px-6 py-2"><Link to={`/restaurant/${data?.restaurant._id}`}>{data?.restaurant.title}</Link></td>
+                        <td className="px-6 py-2"><Button disabled={data?.approved} onClick={() => handleApprove(data)} text={!data?.approved ? "Approve" : "Approved"} className={'disabled:cursor-not-allowed px-3 py-1 w-max'} /></td>
                       </tr>
                     })
                   }

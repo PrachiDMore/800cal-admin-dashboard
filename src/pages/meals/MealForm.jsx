@@ -22,7 +22,10 @@ const MealForm = () => {
 		kcal: "",
 		disabled: true,
 		program: "",
-		price: 0
+		silverprice: 0,
+		goldprice: 0,
+		platinumprice: 0,
+		published: false
 	}
 	useEffect(() => {
 		if (_id) {
@@ -108,7 +111,6 @@ const MealForm = () => {
 						<Input placeholder={"Enter the meal name"} label={"Name"} id={"name"} type={"text"} value={formState.name} onChange={handleChange} />
 						{/* <Input placeholder={"Enter the meal tag"} label={"Tag"} id={"tag"} type={"text"} value={formState.tag} onChange={handleChange} /> */}
 						<Input placeholder={"Enter the meal calories"} label={"kCal"} id={"kcal"} type={"number"} value={formState.kcal} onChange={handleChange} />
-						<Input placeholder={"Enter the meal price"} label={"Price"} id={"price"} type={"number"} value={formState.price} textarea={false} onChange={handleChange} />
 						<Select options={[{
 							label: "Yes",
 							value: true
@@ -137,7 +139,20 @@ const MealForm = () => {
 								value: "Snack/Soup"
 							},
 						]} />
+						<Input placeholder={"Enter the meal price for silver category"} label={"Silver Category Price"} id={"silverprice"} type={"number"} value={formState.silverprice} onChange={handleChange} />
+						<Input placeholder={"Enter the meal price for gold category"} label={"Gold Category Price"} id={"goldprice"} type={"number"} value={formState.goldprice} onChange={handleChange} />
+						<Input placeholder={"Enter the meal price for platinum category"} label={"Platinum Category Price"} id={"platinumprice"} type={"number"} value={formState.platinumprice} onChange={handleChange} />
 						<Input placeholder={"Enter the meal description"} label={"Description"} id={"description"} type={"text"} value={formState.description} textarea={true} onChange={handleChange} />
+						<Select options={[
+							{
+								label: "True",
+								value: true
+							},
+							{
+								label: "False",
+								value: false
+							}
+						]} label={"Published"} id={"published"} value={formState.published} onChange={handleChange} />
 						<Button type={"submit"} text={"Submit"} />
 					</form>
 				</div>
