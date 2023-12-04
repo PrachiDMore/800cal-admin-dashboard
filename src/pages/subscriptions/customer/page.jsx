@@ -5,12 +5,12 @@ import Layout from '@/components/custom/Layout'
 import CustomerModal from '@/components/custom/Modal/CustomerModal';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import {AiFillEye} from 'react-icons/ai';
+import { AiFillEye } from 'react-icons/ai';
 
 const Customer = () => {
 	const [customers, setCustomers] = useState([])
 	const [showModal, setShowModal] = useState([])
-	
+
 	useEffect(() => {
 		axios('https://800cal-backend.vercel.app/customer/all')
 			.then((res) => {
@@ -33,11 +33,10 @@ const Customer = () => {
 						<div className='w-full'>
 							<input className='w-full outline-none bg-darkGray rounded-lg px-4 py-2' type="text" placeholder='Search...' />
 						</div>
-
 						<div className='flex w-full gap-3'>
-              <Button text={"Excel"}/>
-              <Button text={"Print"}/>
-            </div>
+							<Button text={"Excel"} />
+							<Button text={"Print"} />
+						</div>
 
 						<div className="w-full text-white overflow-hidden rounded-lg">
 							<table className="w-full text-left bg-darkGray ">
@@ -64,35 +63,35 @@ const Customer = () => {
 									{
 										customers?.map((customer, index) => {
 											return <tr className="border-b border-mediumGray">
-											<th className="px-6 py-4 ">
-												{index+1}
-											</th>
-											<td className="px-6 py-4">
-												<div className='flex gap-3 items-center'>
-													<img className='h-10 w-10' src="/assets/profile.png" alt="" />
-													<div>
-														<p>{customer.firstname} {customer.lastname}</p>
-														<p className='text-xs text-mediumGray'>Garden view park, Kuwait</p>
+												<th className="px-6 py-4 ">
+													{index + 1}
+												</th>
+												<td className="px-6 py-4">
+													<div className='flex gap-3 items-center'>
+														<img className='h-10 w-10' src={customer?.image} alt="" />
+														<div>
+															<p>{customer.firstname} {customer.lastname}</p>
+															<p className='text-xs text-mediumGray'>{customer.address}</p>
+														</div>
 													</div>
-												</div>
-											</td>
-											<td className="px-6 py-4">
-												{customer.email}
-											</td>
-											<td className="px-6 py-4">
-												{customer.username}
-											</td>
-											{/* <td className="px-6 py-4">
+												</td>
+												<td className="px-6 py-4">
+													{customer.email}
+												</td>
+												<td className="px-6 py-4">
+													{customer.username}
+												</td>
+												{/* <td className="px-6 py-4">
 												<span className='h-10 w-10 bg-blue-500' onClick={() => {
 													alert("Working!")
 												}}><AiFillEye/></span>
 											</td> */}
-											<td onClick={() => {
+												<td onClick={() => {
 													setShowModal({ show: true, update: true, data: customer })
 												}} className="cursor-pointer px-6 py-4">
 													<span className='h-10 w-10 bg-blue-500'><AiFillEye /></span>
 												</td>
-										</tr>
+											</tr>
 										})
 									}
 								</tbody>
@@ -101,7 +100,7 @@ const Customer = () => {
 					</div>
 				</div>
 			</Layout>
-			<CustomerModal showModal={showModal} setShowModal={setShowModal}/>
+			<CustomerModal showModal={showModal} setShowModal={setShowModal} />
 		</div>
 	)
 }

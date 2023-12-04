@@ -9,7 +9,6 @@ export const RestaurantContextProvider = ({ children }) => {
 	const [restaurants, setRestaurants] = useState([]);
 
 	useEffect(() => {
-		console.log(token)
 		if (token) {
 			axios(`${process.env.REACT_APP_BASE_URL}restaurant/all`)
 				.then((res) => {

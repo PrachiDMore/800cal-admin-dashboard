@@ -55,7 +55,7 @@ const AllSubscriptions = () => {
                 <tbody className='text-sm'>
                   {
                     subscriptions?.map((order, index) => {
-                      return <tr key={order._id} className="border-b border-mediumGray cursor-pointer">
+                      return <tr key={index} className="border-b border-mediumGray cursor-pointer">
                         <th className="px-6 py-4 ">
                           #{index + 1}
                         </th>
@@ -72,16 +72,16 @@ const AllSubscriptions = () => {
                           {moment(order.timestamp).format("Do MMM, YYYY, h:mm A")}
                         </td>
                         <td className="px-6 py-4 flex flex-col">
-                          <p>{moment(order.startDate).format("Do MMM, YYYY")} - {moment(order.endDate).format("Do MMM, YYYY")}</p>
-                          <p className='text-xs text-mediumGray'>{order.duration} Days</p>
+                          <p>{moment(order.startDate).format("Do MMM, YYYY")} - {moment(order?.endDate).format("Do MMM, YYYY")}</p>
+                          <p className='text-xs text-mediumGray'>{order?.duration} Days</p>
                         </td>
                         <td className="px-6 py-4">
-                          {order.includeFridays ? "Included" : "Excluded"}
+                          {order?.includeFridays ? "Included" : "Excluded"}
                         </td>
                         <td className="px-6 py-4">
                           <div className='flex items-center gap-3'>
                             {/* <img className='border-green border-2 rounded-3xl p-1 h-8 w-8' src="/assets/resto.png" alt="" /> Chilis</div> */}
-                            {order.restaurantCategory.title}
+                            {order?.category}
                           </div>
                         </td>
                       </tr>

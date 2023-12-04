@@ -9,6 +9,7 @@ import AllSubscriptions from './pages/subscriptions/all-subscriptions/AllSubscri
 import Customer from './pages/customer/Customer';
 import Rider from './pages/rider/Rider';
 import Programs from './pages/programs/Programs';
+import Withdrawal from './pages/restaurant/Withdrawal';
 import AllOrders from './pages/orders/all-orders/AllOrders';
 import { OrderContextProvider } from './context/Orders';
 import ProgramForm from './pages/programs/ProgramForm';
@@ -45,6 +46,7 @@ function App() {
 
 
                             <Route path="/restaurant" element={<Restaurant />} />
+                            <Route path="/billings" element={<Withdrawal />} />
 
 
                             <Route path="/subscription/all" element={<AllSubscriptions />} />
@@ -71,6 +73,7 @@ function App() {
                             <Route path="/meal/add" element={<MealForm />} />
                             <Route path="/meal/:_id" element={<MealForm />} />
                             <Route path="/meal/application" element={<MealsApplication />} />
+                            <Route path="/meal/application/:_id" element={<MealsApplication />} />
 
                             <Route path="/details" element={<Details />} />
                           </Routes>

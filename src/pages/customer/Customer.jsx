@@ -60,16 +60,16 @@ const Customer = () => {
 								<tbody className='text-sm'>
 									{
 										customers?.map((customer, index) => {
-											return <tr className="border-b border-mediumGray">
+											return <tr key={index} className="border-b border-mediumGray">
 												<th className="px-6 py-4 ">
 													{index + 1}
 												</th>
 												<td className="px-6 py-4">
 													<div className='flex gap-3 items-center'>
-														<img className='h-10 w-10' src="/assets/profile.png" alt="" />
+														<img className='h-10 w-10' src={customer.image} alt="" />
 														<div>
 															<p>{customer.firstname} {customer.lastname}</p>
-															<p className='text-xs text-mediumGray'>Garden view park, Kuwait</p>
+															<p className='text-xs text-mediumGray'>{customer.address}</p>
 														</div>
 													</div>
 												</td>
