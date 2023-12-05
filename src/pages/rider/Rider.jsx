@@ -26,7 +26,7 @@ const Rider = () => {
               <Button className={"w-28"} text={"Add"} onClick={() => setViewRider(true)} />
             </div>
 
-            <div className='flex w-full gap-3'>
+            <div className='hidden w-full gap-3'>
               <Button text={"Excel"} />
               <Button text={"Print"} />
             </div>
@@ -46,7 +46,7 @@ const Rider = () => {
                 <tbody className='text-sm'>
                   {
                     riders?.map((rider, index) => {
-                      return <tr onClick={() => { navigate(`/rider/${rider._id}`) }} className="border-b border-mediumGray">
+                      return <tr key={index} onClick={() => { navigate(`/rider/${rider._id}`) }} className="border-b border-mediumGray">
                         <th className="px-6 py-4 ">#{index + 1}</th>
                         <td className="px-6 py-4">
                           <div className='flex gap-3 items-center'>

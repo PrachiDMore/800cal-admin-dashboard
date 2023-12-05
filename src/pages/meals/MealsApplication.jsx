@@ -60,6 +60,7 @@ const MealsApplication = () => {
                     <th className="px-6 py-4">Meal</th>
                     <th className="px-6 py-4">Program</th>
                     <th className="px-6 py-4">Restaurant</th>
+                    <th className="px-6 py-4">Price</th>
                     <th className="px-6 py-4">Action</th>
                   </tr>
                 </thead>
@@ -72,6 +73,7 @@ const MealsApplication = () => {
                         <td className="px-6 py-2">{data?.meal.name}</td>
                         <td className="px-6 py-2">{data?.meal.program.name}</td>
                         <td className="px-6 py-2"><Link to={`/restaurant/${data?.restaurant._id}`}>{data?.restaurant.title}</Link></td>
+                        <td className="px-6 py-2">{data?.price} KWD</td>
                         <td className="px-6 py-2"><Button disabled={data?.approved} onClick={() => handleApprove(data)} text={!data?.approved ? "Approve" : "Approved"} className={'disabled:cursor-not-allowed px-3 py-1 w-max'} /></td>
                       </tr>
                     })

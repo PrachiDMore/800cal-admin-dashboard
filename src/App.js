@@ -76,6 +76,8 @@ function App() {
                             <Route path="/meal/application/:_id" element={<MealsApplication />} />
 
                             <Route path="/details" element={<Details />} />
+
+                            <Route path="/accounts" element={<Withdrawal />} />
                           </Routes>
                         </OrderContextProvider>
                       </MealApplicationContextProvider>

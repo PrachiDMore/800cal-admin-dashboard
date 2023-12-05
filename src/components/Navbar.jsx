@@ -32,21 +32,21 @@ const Navbar = () => {
               title: "New Subscriptions",
               number: subscriptions?.filter((data) => { return data?.order_status === "new" }).length
             },
-            {
-              url: "/confirmed-orders",
-              title: "Confirmed Orders",
-              number: 2
-            },
-            {
-              url: "/completed-orders",
-              title: "Completed Orders",
-              number: 2
-            },
-            {
-              url: "/cancelled-orders",
-              title: "Cancelled Orders",
-              number: 2
-            }
+            // {
+            //   url: "/confirmed-orders",
+            //   title: "Confirmed Orders",
+            //   number: 2
+            // },
+            // {
+            //   url: "/completed-orders",
+            //   title: "Completed Orders",
+            //   number: 2
+            // },
+            // {
+            //   url: "/cancelled-orders",
+            //   title: "Cancelled Orders",
+            //   number: 2
+            // }
           ]} />
           <NavItem title={"Orders"} items={[
             {
@@ -59,21 +59,21 @@ const Navbar = () => {
               title: "New Subscriptions",
               number: 0
             },
-            {
-              url: "/confirmed-orders",
-              title: "Confirmed Orders",
-              number: 2
-            },
-            {
-              url: "/completed-orders",
-              title: "Completed Orders",
-              number: 2
-            },
-            {
-              url: "/cancelled-orders",
-              title: "Cancelled Orders",
-              number: 2
-            }
+            // {
+            //   url: "/confirmed-orders",
+            //   title: "Confirmed Orders",
+            //   number: 2
+            // },
+            // {
+            //   url: "/completed-orders",
+            //   title: "Completed Orders",
+            //   number: 2
+            // },
+            // {
+            //   url: "/cancelled-orders",
+            //   title: "Cancelled Orders",
+            //   number: 2
+            // }
           ]} />
           <NavItem link={{
             url: "/customer",
@@ -105,18 +105,23 @@ const Navbar = () => {
               title: "Meals Application",
             }
           ]} />
+          
+          <NavItem link={{
+            url: "/accounts",
+            title: "Accounts"
+          }} />
           <NavItem link={{
             url: "/rider",
             title: "Rider"
           }} />
-          <NavItem link={{
+          {/* <NavItem link={{
             url: "/rider/restaurant",
             title: "Restaurant Rider"
-          }} />
-          <NavItem link={{
+          }} /> */}
+          {/* <NavItem link={{
             url: "/reviews",
             title: "Reviews"
-          }} />
+          }} /> */}
           <NavItem link={{
             url: "/details",
             title: "Details"

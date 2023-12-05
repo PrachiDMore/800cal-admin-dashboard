@@ -24,7 +24,7 @@ const page = () => {
               {/* <Button className={"w-28"} text={"Add Rider"}/> */}
             </div>
 
-            <div className='flex w-full gap-3'>
+            <div className='hidden w-full gap-3'>
               <Button text={"Excel"}/>
               <Button text={"Print"}/>
             </div>
