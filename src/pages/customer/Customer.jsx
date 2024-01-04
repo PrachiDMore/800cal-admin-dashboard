@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
 import Layout from '../../components/Layout'
 import CustomerModal from '../../components/modal/CustomerModal';
@@ -8,13 +9,17 @@ import { AiFillEye } from 'react-icons/ai';
 const Customer = () => {
 	const [customers, setCustomers] = useState([])
 	const [showModal, setShowModal] = useState([])
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		axios('https://800cal-backend.vercel.app/customer/all')
-			.then((res) => {
-				setCustomers(res.data.customers)
+		setLoading(true)
+		axios(`${process.env.REACT_APP_BASE_URL}customer/all`)
+		.then((res) => {
+				setLoading(false)
+				setCustomers(res.data.customer)
 			})
 			.catch((err) => {
+				setLoading(false)
 				console.log(err)
 			})
 	}, []);
@@ -37,63 +42,58 @@ const Customer = () => {
 						</div>
 
 						<div className="w-full text-white overflow-scroll rounded-lg max-h-[72vh]">
-							<table className="w-full text-left bg-darkGray h-full max-h-full">
-								<thead className='sticky top-0'>
-									<tr className='bg-mediumGray rounded-t-lg'>
-										<th className="px-6 py-3">
-											#
-										</th>
-										<th className="px-6 py-3">
-											Name
-										</th>
-										<th className="px-6 py-3">
-											Email
-										</th>
-										<th className="px-6 py-3">
-											Username
-										</th>
-										<th className="px-6 py-3">
-											Actions
-										</th>
-									</tr>
-								</thead>
-								<tbody className='text-sm'>
-									{
-										customers?.map((customer, index) => {
-											return <tr key={index} className="border-b border-mediumGray">
-												<th className="px-6 py-4 ">
-													{index + 1}
-												</th>
-												<td className="px-6 py-4">
-													<div className='flex gap-3 items-center'>
-														<img className='h-10 w-10' src={customer.image} alt="" />
-														<div>
-															<p>{customer.firstname} {customer.lastname}</p>
-															<p className='text-xs text-mediumGray'>{customer.address}</p>
+							{
+								loading ? <h2>Loading...</h2> : <table className="w-full text-left bg-darkGray h-full max-h-full">
+									<thead className='sticky top-0'>
+										<tr className='bg-mediumGray rounded-t-lg'>
+											<th className="px-6 py-3">
+												#
+											</th>
+											<th className="px-6 py-3">
+												Name
+											</th>
+											<th className="px-6 py-3">
+												Email
+											</th>
+											<th className="px-6 py-3">
+												Username
+											</th>
+											<th className="px-6 py-3">
+												Actions
+											</th>
+										</tr>
+									</thead>
+									<tbody className='text-sm'>
+										{
+											customers?.map((customer, index) => {
+												return <tr key={index} className="border-b border-mediumGray">
+													<th className="px-6 py-4 ">
+														{index + 1}
+													</th>
+													<td className="px-6 py-4">
+														<div className='flex gap-3 items-center'>
+															<img className='h-10 w-10' src={customer.image} alt="" />
+															<div>
+																<p>{customer.firstname} {customer.lastname}</p>
+																<p className='text-xs text-mediumGray'>{customer.address}</p>
+															</div>
 														</div>
-													</div>
-												</td>
-												<td className="px-6 py-4">
-													{customer.email}
-												</td>
-												<td className="px-6 py-4">
-													{customer.username}
-												</td>
-												{/* <td className="px-6 py-4">
-												<span className='h-10 w-10 bg-blue-500' onClick={() => {
-													alert("Working!")
-												}}><AiFillEye/></span>
-											</td> */}
-												<td onClick={() => {
-													setShowModal({ show: true, update: true, data: customer })
-												}} className="cursor-pointer px-6 py-4">
-													<span className='h-10 w-10 bg-blue-500'><AiFillEye /></span>
-												</td>
-											</tr>
-										})
-									}
-								</tbody>
-							</table>
+													</td>
+													<td className="px-6 py-4">
+														{customer.email}
+													</td>
+													<td className="px-6 py-4">
+														{customer.username}
+													</td>
+													<td className="cursor-pointer px-6 py-4">
+														<Link to={`/customer/${customer._id}`} className='h-10 w-10 bg-blue-500'><AiFillEye /></Link>
+													</td>
+												</tr>
+											})
+										}
+									</tbody>
+								</table>
+							}
 						</div>
 					</div>
 				</div>

@@ -5,7 +5,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { AiFillEye } from 'react-icons/ai';
 import { MdOutlineRateReview } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UseRestaurantContext } from '../../context/Restaurant'
 
 const Restaurant = () => {
@@ -59,8 +59,7 @@ const Restaurant = () => {
 								<tbody className='text-sm'>
 									{
 										restaurants?.map((restaurant, index) => {
-											console.log(index)
-											return <tr className="border-b border-mediumGray">
+											return <tr key={index} className="border-b border-mediumGray">
 												<th className="px-6 py-4 ">{index + 1}</th>
 												<td className="px-6 py-4">
 													<div className='flex gap-3 items-center'>
@@ -74,8 +73,7 @@ const Restaurant = () => {
 												<td className="px-6 py-4">{restaurant?.email}</td>
 												<td className="px-6 py-4">{restaurant?.username}</td>
 												<td className="px-6 py-4 flex items-center">
-													<span onClick={() => { setModal({ show: true, update: true, data: restaurant }) }} className='cursor-pointer h-10 w-10'><AiFillEye />
-													</span><span onClick={() => router.push('/restaurant/review')} className='cursor-pointer h-10 w-10 text-lg'><MdOutlineRateReview /></span>
+													<Link to={`/restaurant/${restaurant?._id}`} className='cursor-pointer h-10 w-10'><AiFillEye /></Link>
 												</td>
 											</tr>
 										})

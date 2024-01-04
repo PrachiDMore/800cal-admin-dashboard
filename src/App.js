@@ -27,6 +27,10 @@ import { MealsContextProvider } from './context/Meals';
 
 import MealsApplication from './pages/meals/MealsApplication';
 import { MealApplicationContextProvider } from './context/MealApplications';
+import ViewSingleRestaurant from './pages/restaurant/ViewSingleRestaurant';
+import RestaurantOrders from './pages/orders/RestaurantOrders';
+import ProcessingOrders from './pages/orders/processing/ProcessingOrders';
+import CustomerDetails from './pages/customer/CustomerDetails';
 
 function App() {
   return (
@@ -46,6 +50,7 @@ function App() {
 
 
                             <Route path="/restaurant" element={<Restaurant />} />
+                            <Route path="/restaurant/:_id" element={<ViewSingleRestaurant />} />
                             <Route path="/billings" element={<Withdrawal />} />
 
 
@@ -54,11 +59,13 @@ function App() {
 
 
                             <Route path="/orders/all" element={<AllOrders />} />
-                            <Route path="/orders/new" element={<NewSubscriptions />} />
+                            <Route path="/orders/new" element={<ProcessingOrders />} />
                             <Route path="/order/:_id" element={<OrderDetails />} />
+                            <Route path="/order/restaurant/:_id" element={<RestaurantOrders />} />
 
 
                             <Route path="/customer" element={<Customer />} />
+                            <Route path="/customer/:_id" element={<CustomerDetails />} />
 
 
                             <Route path="/rider" element={<Rider />} />

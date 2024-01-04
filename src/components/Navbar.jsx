@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavItem from './NavItem'
+import GoogleTranslate from './GoogleTranslate'
 import { UseSubscriptionContext } from '../context/Subscriptions'
 import { UseOrderContext } from '../context/Orders'
 import { UseProgramContext } from '../context/Program'
@@ -10,6 +11,27 @@ const Navbar = () => {
   const { orders } = UseOrderContext()
   const { programs } = UseProgramContext()
   const { meals } = UseMealsContext()
+
+  useEffect(() => {
+    if (!window.googleTranslateElementInit) {
+      const googleTranslateScript = document.createElement('script');
+      googleTranslateScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      googleTranslateScript.async = true;
+      document.body.appendChild(googleTranslateScript);
+
+      window.googleTranslateElementInit = () => {
+        new window.google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            includedLanguages: 'ur',
+          },
+          'google_translate_element'
+        );
+      };
+    }
+  }, []);
+
+
   return (
     <>
       <div className='w-1/5 p-5 Lexend border-r border-textGray max-h-screen overflow-scroll'>
@@ -55,9 +77,9 @@ const Navbar = () => {
               number: orders?.length
             },
             {
-              url: "/subscription/new",
-              title: "New Subscriptions",
-              number: 0
+              url: "/orders/new",
+              title: "New Orders",
+              number: orders?.filter((e) => e.status === "processing").length
             },
             // {
             //   url: "/confirmed-orders",
@@ -105,7 +127,7 @@ const Navbar = () => {
               title: "Meals Application",
             }
           ]} />
-          
+
           <NavItem link={{
             url: "/accounts",
             title: "Accounts"
@@ -127,6 +149,8 @@ const Navbar = () => {
             title: "Details"
           }} />
         </div>
+
+        <div id="google_translate_element"></div>
       </div>
     </>
   )

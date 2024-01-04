@@ -50,7 +50,7 @@ const NewSubscriptions = () => {
                       Restaurant Category
                     </th>
                   </tr>
-                </thead> 
+                </thead>
 
                 <tbody className='text-sm'>
                   {
@@ -79,10 +79,7 @@ const NewSubscriptions = () => {
                           {order.includeFridays ? "Included" : "Excluded"}
                         </td>
                         <td className="px-6 py-4">
-                          <div className='flex items-center gap-3'>
-                            {/* <img className='border-green border-2 rounded-3xl p-1 h-8 w-8' src="/assets/resto.png" alt="" /> Chilis</div> */}
-                            {order.restaurantCategory.title}
-                          </div>
+                          {order?.category}
                         </td>
                       </tr>
                     })

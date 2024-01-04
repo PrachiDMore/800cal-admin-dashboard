@@ -7,7 +7,7 @@ import axios from 'axios'
 const RestoProfile = ({ modal, setModal }) => {
 	const approve = () => {
 		try {
-			axios('https://800cal-backend.vercel.app/restaurant/enable', {
+			axios(`${process.env.REACT_APP_BASE_URL}restaurant/enable`, {
 				method: "PATCH",
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -26,7 +26,7 @@ const RestoProfile = ({ modal, setModal }) => {
 	}
 	const suspend = () => {
 		try {
-			axios('https://800cal-backend.vercel.app/restaurant/suspend', {
+			axios(`${process.env.REACT_APP_BASE_URL}restaurant/suspend`, {
 				method: "PATCH",
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('token')}`

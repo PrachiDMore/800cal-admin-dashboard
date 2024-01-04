@@ -3,10 +3,10 @@ import Input from '../Input'
 import Button from '../Button'
 import axios from 'axios'
 
-const CustomerModal = ({setShowModal,showModal}) => {
+const CustomerModal = ({ setShowModal, showModal }) => {
   const approve = () => {
     try {
-      axios('https://800cal-backend.vercel.app/customer/enable', {
+      axios(`${process.env.REACT_APP_BASE_URL}customer/enable`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -25,7 +25,7 @@ const CustomerModal = ({setShowModal,showModal}) => {
   }
   const suspend = () => {
     try {
-      axios('https://800cal-backend.vercel.app/customer/suspend', {
+      axios(`${process.env.REACT_APP_BASE_URL}customer/suspend`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`

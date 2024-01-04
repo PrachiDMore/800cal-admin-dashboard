@@ -10,13 +10,17 @@ import { AiFillEye } from 'react-icons/ai';
 const Customer = () => {
 	const [customers, setCustomers] = useState([])
 	const [showModal, setShowModal] = useState([])
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		axios('https://800cal-backend.vercel.app/customer/all')
+		setLoading(true)
+		axios(`${process.env.REACT_APP_BASE_URL}customer/all`)
 			.then((res) => {
+				setLoading(false)
 				setCustomers(res.data.customers)
 			})
 			.catch((err) => {
+				setLoading(false)
 				console.log(err)
 			})
 	}, []);
@@ -39,7 +43,9 @@ const Customer = () => {
 						</div>
 
 						<div className="w-full text-white overflow-hidden rounded-lg">
-							<table className="w-full text-left bg-darkGray ">
+							{
+								loading ? <h2>Loading...</h2> :
+								<table className="w-full text-left bg-darkGray ">
 								<thead className='overflow-hidden '>
 									<tr className='bg-mediumGray rounded-t-lg'>
 										<th className="px-6 py-3">
@@ -96,6 +102,7 @@ const Customer = () => {
 									}
 								</tbody>
 							</table>
+							}
 						</div>
 					</div>
 				</div>
