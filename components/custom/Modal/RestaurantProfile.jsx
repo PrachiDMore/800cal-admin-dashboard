@@ -2,6 +2,9 @@ import React from 'react'
 import Input from '../Input'
 import Button from '../Button'
 import axios from 'axios'
+import { Lexend } from 'next/font/google'
+
+const lexend = Lexend({ subsets: ['latin'] })
 
 const RestoProfile = ({ modal, setModal }) => {
 	const approve = () => {
@@ -44,7 +47,7 @@ const RestoProfile = ({ modal, setModal }) => {
 	}
 	return (
 		<>
-			<div id="defaultModal" tabindex="-1" aria-hidden="true" className={modal?.show ? "Lexend flex items-center fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-100 duration-500" : "-translate-y-[50px] flex items-center fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-0 pointer-events-none duration-500"}>
+			<div id="defaultModal" tabindex="-1" aria-hidden="true" className={modal?.show ? `Lexend flex items-center fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-100 duration-500 ${lexend.className}` : `-translate-y-[50px] flex items-center fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-0 pointer-events-none duration-500 ${lexend.className}` }>
 				<div className="relative w-[80%] max-h-full overflow-y-scroll m-auto">
 
 					<div className="relative rounded-lg shadow bg-darkGray">

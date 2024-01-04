@@ -21,12 +21,12 @@ const page = () => {
           <div className='w-full grid gap-3 p-5'>
             <div className='w-full flex gap-3'>
               <input className='w-full outline-none bg-darkGray rounded-lg px-4 py-2' type="text" placeholder='Search...' />
-              <Button className={"w-28"} text={"Add Rider"}/>
+              <Button className={"w-28"} text={"Add Rider"} onClick={() => setViewRider(true)} />
             </div>
 
             <div className='flex w-full gap-3'>
-              <Button text={"Excel"}/>
-              <Button text={"Print"}/>
+              <Button text={"Excel"} />
+              <Button text={"Print"} />
             </div>
 
             <div className="w-full text-white  overflow-hidden rounded-lg">
@@ -59,7 +59,7 @@ const page = () => {
 												}}><AiFillEye/></span>
 											</td> */}
                     <td className="cursor-pointer px-6 py-4">
-                      <span onClick={() => {setViewRider(true)}} className='h-10 w-10 bg-blue-500'><AiFillEye /></span>
+                      <span onClick={() => { setViewRider(true) }} className='h-10 w-10 bg-blue-500'><AiFillEye /></span>
                     </td>
                   </tr>
                   {/* {
@@ -102,7 +102,7 @@ const page = () => {
           </div>
         </div>
       </Layout>
-      <ViewRider viewRider={viewRider} setViewRider={setViewRider} isRestaurant={false}/>
+      <ViewRider viewRider={viewRider} setViewRider={setViewRider} isRestaurant={false} />
     </>
   )
 }

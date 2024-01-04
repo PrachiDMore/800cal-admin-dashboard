@@ -1,8 +1,11 @@
 import React from 'react'
 import NavItem from './NavItem'
 import { BsBox } from 'react-icons'
+import { UseSubscriptionContext } from '@/context/Subscriptions'
 
 const Navbar = () => {
+  const { orders } = UseSubscriptionContext()
+  console.log(orders)
   return (
     <>
       <div className='w-1/5 p-5 Lexend border-r border-textGray'>
@@ -18,14 +21,14 @@ const Navbar = () => {
             url: "/restaurant",
             title: "Restaurant"
           }} />
-          <NavItem title={"Orders"} order={true} items={[
+          <NavItem title={"Subscriptions"} order={true} items={[
             {
-              url: "/all-orders",
-              title: "All Orders"
+              url: "/all-subscriptions",
+              title: "All Subscriptions"
             },
             {
-              url: "/new-orders",
-              title: "New Orders"
+              url: "/new-subscriptions",
+              title: "New Subscriptions"
             },
             {
               url: "/confirmed-orders",

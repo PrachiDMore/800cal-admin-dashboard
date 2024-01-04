@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react'
 import { AiFillEye } from 'react-icons/ai';
 import { MdOutlineRateReview } from 'react-icons/md';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const Restaurant = () => {
 	const [restaurants, setRestaurants] = useState([]);
@@ -84,9 +85,9 @@ const Restaurant = () => {
 												<td className="px-6 py-4">{restaurant?.email}</td>
 												<td className="px-6 py-4">{restaurant?.username}</td>
 												<td className="px-6 py-4 flex items-center">
-													<span onClick={() => { setModal({ show: true, update: true, data: restaurant }) }} className='cursor-pointer h-10 w-10'><AiFillEye />
-													</span><span onClick={() => router.push('/restaurant/review')} className='cursor-pointer h-10 w-10 text-lg'><MdOutlineRateReview /></span>
-													</td>
+													<Link href={`/restaurant/${restaurant?._id}`} className='cursor-pointer h-10 w-10'><AiFillEye /></Link>
+													<span onClick={() => router.push('/restaurant/review')} className='cursor-pointer h-10 w-10 text-lg'><MdOutlineRateReview /></span>
+												</td>
 											</tr>
 										})
 									}
