@@ -9,7 +9,7 @@ const MealApplicationContextProvider = ({ children }) => {
 	const [applications, setApplications] = useState([]);
 
 	useEffect(() => {
-		if (token) {
+		if (token && localStorage.getItem("token")) {
 			axios(`${process.env.REACT_APP_BASE_URL}meal-application`, {
 				method: "GET"
 			})

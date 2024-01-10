@@ -8,9 +8,12 @@ import Button from '../../components/Button';
 import moment from 'moment';
 import { Link, useParams } from 'react-router-dom';
 import Select from '../../components/Select';
+import UploadInput from '../../components/UploadInput';
 
 const ViewSingleRestaurant = () => {
 	const { _id } = useParams()
+	const [license, setLicense] = useState("")
+	const [agreement, setAgreement] = useState("")
 	const initialState = {
 		username: "",
 		contactemail: "",
@@ -34,12 +37,39 @@ const ViewSingleRestaurant = () => {
 		})
 	}
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		axios(`${process.env.REACT_APP_BASE_URL}restaurant/admin/update/${_id}`, {
+			method: "PATCH",
+			data: {
+				...data,
+				logo: image,
+				agreement: agreement,
+				license: license
+			},
+			headers: {
+				"Authorization": `Bearer ${localStorage.getItem("token")}`
+			}
+		})
+			.then((res) => {
+				setData(res.data.restaurant)
+				setImage(res?.data?.restaurant?.logo)
+				setAgreement(res?.data?.restaurant?.agreement)
+				setLicense(res?.data?.restaurant?.license)
+			})
+			.catch((err) => {
+				alert(err.message)
+			})
+	}
+
 	useEffect(() => {
 		if (_id) {
 			axios(`${process.env.REACT_APP_BASE_URL}restaurant/profile/${_id}`)
 				.then((res) => {
 					setData(res.data.restaurant)
 					setImage(res?.data?.restaurant?.logo)
+					setAgreement(res?.data?.restaurant?.agreement)
+					setLicense(res?.data?.restaurant?.license)
 				})
 				.catch((err) => {
 					alert(err.message)
@@ -55,7 +85,7 @@ const ViewSingleRestaurant = () => {
 					{/* <img onClick={() => { setShowResto(true) }} className='border-green border-2 rounded-3xl p-1 h-12 w-12' src="/assets/resto.png" alt="" /> */}
 				</div>
 
-				<div className='w-full grid gap-3 p-5'>
+				<form onSubmit={handleSubmit} className='w-full grid gap-3 p-5'>
 					<UploadComponent setImage={setImage} image={image} />
 					<div className='grid grid-cols-2 gap-x-6 gap-y-4'>
 						<Input onChange={handleChange} value={data?.username} label={"Username"} type={"text"} placeholder={"Enter username of restaurant"} />
@@ -65,15 +95,10 @@ const ViewSingleRestaurant = () => {
 						<Input onChange={handleChange} value={data?.contactnumber} label={"Contact Number"} type={"text"} placeholder={"Enter contact number of restaurant"} />
 						<Input onChange={handleChange} value={data?.contactemail} label={"Contact Email"} type={"text"} placeholder={"Enter contact email of restaurant"} />
 						<Input onChange={handleChange} value={moment(data?.licenseExpiry).format("DD-MMM-YYYY")} label={"License Expiry"} type={"text"} placeholder={"Enter contact email of restaurant"} />
+						<Input onChange={handleChange} value={data?.wallet} label={"Wallet"} type={"text"} placeholder={"Restaurant Wallet"} />
 						<Select label={"Enabled"} value={data?.enabled} options={[{ label: "Enabled", value: true }, { label: "Disabled", value: false }]} />
-						<div className='grid grid-cols-12 items-center'>
-							<span className={data?.agreement ? 'col-span-11' : "col-span-full"}><Input label={"Restaurant Agreement"} type={"file"} /></span>
-							{data?.agreement && <Link href={data?.agreement} target='_blank' className={data?.agreement ? 'col-span-1 flex items-center justify-end text-white' : ""}>{data?.agreement != null && <RiLink className='cursor-pointer text-xl text-blue-600' />}</Link>}
-						</div>
-						<div className='grid grid-cols-12 items-center'>
-							<span className={data?.license ? 'col-span-11' : "col-span-full"}><Input label={"Restaurant License"} type={"file"} /></span>
-							{data?.license && <Link href={data?.license} target='_blank' className={data?.license ? 'col-span-1 flex items-center justify-end text-white' : ""}>{data?.license != null && <RiLink className='cursor-pointer text-xl text-blue-600' />}</Link>}
-						</div>
+						<UploadInput onChange={setLicense} value={license} label={"Restaurant License"} />
+						<UploadInput onChange={setAgreement} value={agreement} label={"Restaurant Agreement"} />
 
 						<div className='col-span-2'>
 							<Input textarea={false} value={data?.description} label={"Restaurant Description"} type={"text"} placeholder={"Enter description of restaurant"} />
@@ -81,7 +106,7 @@ const ViewSingleRestaurant = () => {
 					</div>
 					<Button text={"Submit"} type={"submit"} className={"mt-2"} />
 					<Link to={`/order/restaurant/${data?._id}`}><Button text={"View Orders"} type={"button"} className={"mt-2"} /></Link>
-				</div>
+				</form>
 			</div>
 		</Layout>
 	)

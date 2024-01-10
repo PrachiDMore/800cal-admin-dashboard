@@ -9,11 +9,13 @@ import { LiaCarSideSolid } from 'react-icons/lia'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import moment from 'moment'
+import OrderStickerModal from '../../components/OrderStickerModal'
 
 const OrderDetails = () => {
   const { _id } = useParams();
   const [data, setData] = useState();
   const [rider, setRider] = useState("");
+  const [modal, setModal] = useState({ show: false, data: undefined })
 
   useEffect(() => {
     if (_id) {
@@ -32,6 +34,7 @@ const OrderDetails = () => {
   const assignRider = () => {
 
   }
+
 
   return (
     <>
@@ -113,7 +116,7 @@ const OrderDetails = () => {
                       <tbody className='text-sm'>
                         {
                           data?.food?.map((foodItem, index) => {
-                            return <tr className="border-b border-mediumGray">
+                            return <tr key={index} className="border-b border-mediumGray">
                               <td className="px-6 py-4 ">
                                 <img className='h-8 w-8' src="/assets/food.png" alt="" />
                               </td>
@@ -156,6 +159,17 @@ const OrderDetails = () => {
                             <p className=' '>KWD {data?.order?.category === "gold" ? data?.meals?.goldprice : data?.order?.category === "silver" ? data?.meals?.silverprice : data?.meals?.platinumprice}</p>
                           </td>
                         </tr>
+                        <tr className="">
+                          <td className="px-6  ">
+                            <p></p>
+                          </td>
+                          <td className="px-6">
+                            <p className='text-base '>Margin</p>
+                          </td>
+                          <td className="px-6">
+                            <p className=' '>KWD {data?.order?.category === "gold" ? data?.meals?.goldprice : data?.order?.category === "silver" ? data?.meals?.silverprice : data?.meals?.platinumprice - data?.vendor_price?.price}</p>
+                          </td>
+                        </tr>
 
                       </tbody>
                     </table>
@@ -164,13 +178,14 @@ const OrderDetails = () => {
               </div>
 
               <div className='w-full flex gap-5'>
-                <Button buttonClassName={"w-auto px-3 py-1"} text={"Print sticker"} />
+                <Button onClick={() => setModal({show: true, data: data})} buttonClassName={"w-auto px-3 py-1"} text={"Print sticker"} />
                 <Button onClick={() => window.print()} buttonClassName={"w-auto px-3 py-1 bg-accent border border-green"} text={"Download invoive"} />
               </div>
             </div>
           </div>
         </div>
       </Layout>
+      <OrderStickerModal setModal={setModal} modal={modal}/>
       {/* <RestoProfile showResto={showResto} setShowResto={setShowResto} /> */}
     </>
   )
