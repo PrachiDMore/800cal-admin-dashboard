@@ -14,11 +14,6 @@ const Navbar = () => {
 
   useEffect(() => {
     if (!window.googleTranslateElementInit) {
-      const googleTranslateScript = document.createElement('script');
-      googleTranslateScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-      googleTranslateScript.async = true;
-      document.body.appendChild(googleTranslateScript);
-
       window.googleTranslateElementInit = () => {
         new window.google.translate.TranslateElement(
           {
@@ -128,14 +123,36 @@ const Navbar = () => {
             }
           ]} />
 
-          <NavItem link={{
+          {localStorage.getItem("role") === "admin" && <NavItem link={{
             url: "/accounts",
             title: "Accounts"
-          }} />
+          }} />}
           <NavItem link={{
             url: "/rider",
             title: "Rider"
           }} />
+          <NavItem title={"Ingredients"} items={[
+            {
+              url: "/ingredients",
+              title: "Ingredients",
+              // number: meals?.length
+            },
+            {
+              url: "/ingredients/create",
+              title: "Add Ingredient",
+            },
+          ]} />
+          {localStorage.getItem("role") === "admin" && <NavItem title={"Manager"} items={[
+            {
+              url: "/manager",
+              title: "Managers",
+              // number: meals?.length
+            },
+            {
+              url: "/manager/create",
+              title: "Add Manager",
+            },
+          ]} />}
           {/* <NavItem link={{
             url: "/rider/restaurant",
             title: "Restaurant Rider"
