@@ -43,6 +43,7 @@ import AllTickets from "./pages/tickets/all-tickets/AllTickets";
 import PendingTickets from "./pages/tickets/pending-tickets/PendingTickets";
 import DetailTicket from "./pages/tickets/detail-ticket/DetailTicket";
 import { TicketContextProvider } from "./context/Tickets";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
                               <TicketContextProvider>
                                 <Routes>
                                   <Route path="/" element={<SignIn />} />
+                                  <Route path="/dashboard" element={<Dashboard />} />
 
                                   <Route
                                     path="/restaurant"

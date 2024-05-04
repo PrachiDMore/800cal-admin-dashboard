@@ -28,7 +28,7 @@ const SignIn = () => {
 							localStorage.setItem('token', res.data.token)
 							localStorage.setItem('role', "admin")
 							alert(res.data.message)
-							navigate("/restaurant")
+							navigate("/dashboard")
 						}
 					})
 					.catch((err) => {

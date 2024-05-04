@@ -73,7 +73,6 @@ const Withdrawal = () => {
               <Button buttonClassName={"w-auto px-3 py-1"} text={"Excel"} />
               <Button buttonClassName={"w-auto px-3 py-1"} text={"Print"} />
             </div>
-
             <div className="w-full text-white  overflow-hidden rounded-lg">
               <table className="w-full text-left bg-darkGray ">
                 <thead className='overflow-hidden '>
@@ -98,7 +97,7 @@ const Withdrawal = () => {
                         </td>
                         <th className="px-6 py-4 ">{moment(data?.time_stamp).format("Do MMM, YYYY hh:mm a")}</th>
                         <th className="px-6 py-4 ">{data?.dispursed_date ? moment(data?.dispursed_date).format("Do MMM, YYYY hh:mm a") : "-"}</th>
-                        <th className="px-6 py-4 "><Button text={"Pay"} onClick={() => {
+                        <th className="px-6 py-4 "><Button disabled={data?.completed} text={"Pay"} onClick={() => {
                           axios(`${process.env.REACT_APP_BASE_URL}restaurant-transaction/approve/${data?._id}`, {
                             method: "PATCH",
                             headers: {
@@ -108,7 +107,7 @@ const Withdrawal = () => {
                             .then((res) => {
                               alert(res.data.message)
                             })
-                        }}/></th>
+                        }} /></th>
                       </tr>
                     })
                   }

@@ -37,6 +37,12 @@ const Navbar = () => {
         <div className="text-white grid grid-cols-1 gap-2">
           <NavItem
             link={{
+              url: "/dashboard",
+              title: "Dashboard",
+            }}
+          />
+          <NavItem
+            link={{
               url: "/restaurant",
               title: "Restaurant",
             }}
