@@ -96,7 +96,7 @@ const ViewSingleRestaurant = () => {
 						<Input onChange={handleChange} value={data?.contactemail} label={"Contact Email"} type={"text"} placeholder={"Enter contact email of restaurant"} />
 						<Input onChange={handleChange} value={moment(data?.licenseExpiry).format("DD-MMM-YYYY")} label={"License Expiry"} type={"text"} placeholder={"Enter contact email of restaurant"} />
 						<Input onChange={handleChange} value={data?.wallet} label={"Wallet"} type={"text"} placeholder={"Restaurant Wallet"} />
-						<Select label={"Enabled"} value={data?.enabled} options={[{ label: "Enabled", value: true }, { label: "Disabled", value: false }]} />
+						<Select onChange={handleChange} label={"Enabled"} value={data?.enabled} options={[{ label: "Enabled", value: true }, { label: "Disabled", value: false }]} />
 						<UploadInput onChange={setLicense} value={license} label={"Restaurant License"} />
 						<UploadInput onChange={setAgreement} value={agreement} label={"Restaurant Agreement"} />
 
