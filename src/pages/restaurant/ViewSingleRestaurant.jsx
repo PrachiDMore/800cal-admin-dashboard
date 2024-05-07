@@ -39,10 +39,13 @@ const ViewSingleRestaurant = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Convert date to timestamp before submitting
+    const timestampDate = moment(data.licenseExpiry).unix();
     axios(`${process.env.REACT_APP_BASE_URL}restaurant/admin/update/${_id}`, {
       method: "PATCH",
       data: {
         ...data,
+        licenseExpiry: timestampDate, // Send timestamp to server
         logo: image,
         agreement: agreement,
         license: license,
@@ -70,12 +73,20 @@ const ViewSingleRestaurant = () => {
           setImage(res?.data?.restaurant?.logo);
           setAgreement(res?.data?.restaurant?.agreement);
           setLicense(res?.data?.restaurant?.license);
+          // Convert timestamp to date when fetching data
+          setData({
+            ...res.data.restaurant,
+            licenseExpiry: moment
+              .unix(res.data.restaurant.licenseExpiry)
+              .format("YYYY-MM-DD"),
+          });
         })
         .catch((err) => {
           alert(err.message);
         });
     }
   }, [_id]);
+
   return (
     <Layout>
       <div className="w-4/5  Lexend overflow-auto">
@@ -131,12 +142,12 @@ const ViewSingleRestaurant = () => {
               placeholder={"Enter contact email of restaurant"}
             />
             <Input
-            //   onChange={handleChange}
-              value={moment(data?.licenseExpiry).format("DD-MMM-YYYY")}
-              //   value={data?.licenseExpiry}
+              onChange={handleChange}
+              // value={moment(data?.licenseExpiry).format("DD-MMM-YYYY")}
+              value={data?.licenseExpiry}
               id="licenseExpiry"
               label={"License Expiry"}
-            //   type={"date"}
+              type={"date"}
               placeholder={"Enter contact email of restaurant"}
             />
             <Input
