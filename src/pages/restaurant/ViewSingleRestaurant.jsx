@@ -55,10 +55,7 @@ const ViewSingleRestaurant = () => {
       },
     })
       .then((res) => {
-        setData(res.data.restaurant);
-        setImage(res?.data?.restaurant?.logo);
-        setAgreement(res?.data?.restaurant?.agreement);
-        setLicense(res?.data?.restaurant?.license);
+        console.log(res);
       })
       .catch((err) => {
         alert(err.message);
@@ -96,20 +93,84 @@ const ViewSingleRestaurant = () => {
           {/* <img onClick={() => { setShowResto(true) }} className='border-green border-2 rounded-3xl p-1 h-12 w-12' src="/assets/resto.png" alt="" /> */}
         </div>
 
-				<form onSubmit={handleSubmit} className='w-full grid gap-3 p-5'>
-					<UploadComponent setImage={setImage} image={image} />
-					<div className='grid grid-cols-2 gap-x-6 gap-y-4'>
-						<Input onChange={handleChange} value={data?.username} label={"Username"} type={"text"} placeholder={"Enter username of restaurant"} />
-						<Input onChange={handleChange} value={data?.title} label={"Title"} type={"text"} placeholder={"Enter title of restaurant"} />
-						<Input onChange={handleChange} value={data?.companyname} label={"Company Name"} type={"text"} placeholder={"Enter company name of restaurant"} />
-						<Input onChange={handleChange} value={data?.contactname} label={"Contact Name"} type={"text"} placeholder={"Enter contact name of restaurant"} />
-						<Input onChange={handleChange} value={data?.contactnumber} label={"Contact Number"} type={"text"} placeholder={"Enter contact number of restaurant"} />
-						<Input onChange={handleChange} value={data?.contactemail} label={"Contact Email"} type={"text"} placeholder={"Enter contact email of restaurant"} />
-						<Input onChange={handleChange} value={moment(data?.licenseExpiry).format("DD-MMM-YYYY")} label={"License Expiry"} type={"text"} placeholder={"Enter contact email of restaurant"} />
-						<Input onChange={handleChange} value={data?.wallet} label={"Wallet"} type={"text"} placeholder={"Restaurant Wallet"} />
-						<Select label={"Enabled"} value={data?.enabled} options={[{ label: "Enabled", value: true }, { label: "Disabled", value: false }]} />
-						<UploadInput onChange={setLicense} value={license} label={"Restaurant License"} />
-						<UploadInput onChange={setAgreement} value={agreement} label={"Restaurant Agreement"} />
+        <form onSubmit={handleSubmit} className="w-full grid gap-3 p-5">
+          <UploadComponent setImage={setImage} image={image} />
+          <div className="grid grid-cols-2 gap-x-6 gap-y-4">
+            <Input
+              onChange={handleChange}
+              value={data?.username}
+              label={"Username"}
+              type={"text"}
+              placeholder={"Enter username of restaurant"}
+            />
+            <Input
+              onChange={handleChange}
+              value={data?.title}
+              label={"Title"}
+              type={"text"}
+              placeholder={"Enter title of restaurant"}
+            />
+            <Input
+              onChange={handleChange}
+              value={data?.companyname}
+              label={"Company Name"}
+              type={"text"}
+              placeholder={"Enter company name of restaurant"}
+            />
+            <Input
+              onChange={handleChange}
+              value={data?.contactname}
+              label={"Contact Name"}
+              type={"text"}
+              placeholder={"Enter contact name of restaurant"}
+            />
+            <Input
+              onChange={handleChange}
+              value={data?.contactnumber}
+              label={"Contact Number"}
+              type={"text"}
+              placeholder={"Enter contact number of restaurant"}
+            />
+            <Input
+              onChange={handleChange}
+              value={data?.contactemail}
+              label={"Contact Email"}
+              type={"text"}
+              placeholder={"Enter contact email of restaurant"}
+            />
+            <Input
+              onChange={handleChange}
+              id="licenseExpiry"
+              value={data?.licenseExpiry}
+              label={"License Expiry"}
+              type={"date"}
+              placeholder={"Enter contact email of restaurant"}
+            />
+            <Input
+              onChange={handleChange}
+              value={data?.wallet}
+              label={"Wallet"}
+              type={"text"}
+              placeholder={"Restaurant Wallet"}
+            />
+            <Select
+              label={"Enabled"}
+              value={data?.enabled}
+              options={[
+                { label: "Enabled", value: true },
+                { label: "Disabled", value: false },
+              ]}
+            />
+            <UploadInput
+              onChange={setLicense}
+              value={license}
+              label={"Restaurant License"}
+            />
+            <UploadInput
+              onChange={setAgreement}
+              value={agreement}
+              label={"Restaurant Agreement"}
+            />
 
             <div className="col-span-2">
               <Input

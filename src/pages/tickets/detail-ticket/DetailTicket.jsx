@@ -7,10 +7,12 @@ import Input from "../../../components/Input";
 import Layout from "../../../components/Layout";
 import Select from "../../../components/Select";
 import { UseGlobalContext } from "../../../context/Global";
+import { UseTicketContext } from "../../../context/Tickets";
 
 const DetailTicket = () => {
   const { id } = useParams();
   const { token } = UseGlobalContext();
+  const { updateTicket } = UseTicketContext();
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
@@ -45,8 +47,9 @@ const DetailTicket = () => {
       },
     })
       .then((res) => {
-        // Issue here
-        console.log(res);
+        if (res) {
+          updateTicket();
+        }
       })
       .catch((err) => {
         alert(err.message);

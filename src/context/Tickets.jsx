@@ -7,7 +7,8 @@ const TicketContext = createContext();
 export const TicketContextProvider = ({ children }) => {
   const { token } = UseGlobalContext();
   const [tickets, setTickets] = useState([]);
-  useEffect(() => {
+
+  const fetchTicket = () => {
     if (token) {
       try {
         axios(`${process.env.REACT_APP_BASE_URL}tickets`, {
@@ -22,10 +23,18 @@ export const TicketContextProvider = ({ children }) => {
         console.log(error);
       }
     }
+  };
+
+  const updateTicket = () => {
+    fetchTicket();
+  };
+
+  useEffect(() => {
+    fetchTicket();
   }, [token]);
 
   return (
-    <TicketContext.Provider value={{ tickets }}>
+    <TicketContext.Provider value={{ tickets, updateTicket }}>
       {children}
     </TicketContext.Provider>
   );

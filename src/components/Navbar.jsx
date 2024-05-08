@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="w-1/5 p-5 Lexend border-r border-textGray max-h-screen overflow-scroll">
+      <div className="w-1/5 p-5 Lexend border-r border-textGray max-h-screen h-screen overflow-scroll">
         <div>
           <img className="h-20 w-20" src="/assets/logo.png" alt="" />
         </div>
