@@ -45,7 +45,7 @@ const RestoProfile = ({ modal, setModal }) => {
 	}
 	return (
 		<>
-			<div id="defaultModal" tabindex="-1" aria-hidden="true" className={modal?.show ? `Lexend flex items-center fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-100 duration-500` : `-translate-y-[50px] flex items-center fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-0 pointer-events-none duration-500` }>
+			<div id="defaultModal" tabIndex="-1" aria-hidden="true" className={modal?.show ? `Lexend flex items-center fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-100 duration-500` : `-translate-y-[50px] flex items-center fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-0 pointer-events-none duration-500` }>
 				<div className="relative w-[80%] max-h-full overflow-y-scroll m-auto">
 
 					<div className="relative rounded-lg shadow bg-darkGray">
@@ -58,7 +58,7 @@ const RestoProfile = ({ modal, setModal }) => {
 								setModal({ show: false, update: true, data: undefined })
 							}} type="button" className="text-white bg-transparent hover:bg-gray-600 duration-200 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center ">
 								<svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+									<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
 								</svg>
 							</button>
 						</div>
